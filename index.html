@@ -4,39 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUZIA - Tu Asistente Virtual que te da Luz y Guía</title>
-    <!-- Incluimos Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Incluimos la fuente Inter --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Usamos Inter como fuente principal */
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Pequeño efecto de gradiente en el texto del header */
         .text-gradient {
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             background-image: linear-gradient(to right, #8B5CF6, #EC4899);
         }
-        /* Para asegurar que el logo sea responsivo */
         .luzia-logo {
-            max-width: 150px; /* Ajusta según el tamaño deseado */
+            max-width: 150px;
             height: auto;
-            display: inline-block; /* Para alinear con el texto si es necesario */
+            display: inline-block;
             vertical-align: middle;
-            margin-right: 1rem; /* Espacio a la derecha del logo */
+            margin-right: 1rem;
+        }
+        
+        /* Animación de pulso para el banner de regalo */
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(236, 72, 153, 0.8);
+                transform: scale(1.02);
+            }
+        }
+        .gift-banner {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        /* Animación de aparición gradual */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        /* Efecto de brillo en el botón de regalo */
+        @keyframes shine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .shine-effect {
+            background: linear-gradient(90deg, #EC4899 0%, #F97316 50%, #EC4899 100%);
+            background-size: 200% 100%;
+            animation: shine 3s linear infinite;
         }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Contenedor Principal --><div class="container mx-auto max-w-4xl p-6 py-12 md:py-20">
+    <div class="container mx-auto max-w-4xl p-6 py-12 md:py-20">
 
-        <!-- Cabecera --><header class="text-center">
+        <!-- Cabecera -->
+        <header class="text-center">
             <div class="flex items-center justify-center mb-4">
-                <!-- IMAGEN DEL LOGO LUZIA: Asegúrate de que este archivo se llame 'luzia-logo.png' y esté en la misma carpeta --><img src="./luzia-logo.png" alt="Logo de Luzia" class="luzia-logo"> 
+                <img src="./luzia-logo.png" alt="Logo de Luzia" class="luzia-logo"> 
                 <h1 class="text-5xl md:text-6xl font-extrabold text-gradient">
                     LUZIA
                 </h1>
@@ -48,16 +87,22 @@
             <p class="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
                 ¿Sientes que tus emociones te abruman? ¿Necesitas un espacio seguro para entenderte mejor y encontrar apoyo? LUZIA es tu guía y confidente en el camino hacia una mejor salud mental.
             </p>
+            
+            <!-- Banner llamativo para seguir leyendo -->
+            <div class="mt-8 gift-banner bg-gradient-to-r from-pink-500 to-purple-600 text-white py-4 px-6 rounded-2xl inline-block">
+                <p class="text-xl font-bold">🎁 ¡Hay un REGALO especial esperándote al final! 🎁</p>
+                <p class="text-sm mt-1">👇 Sigue bajando para descubrirlo 👇</p>
+            </div>
         </header>
 
-        <!-- Sección de Qué ofrece LUZIA --><section class="mt-16 md:mt-24">
+        <!-- Sección de Qué ofrece LUZIA -->
+        <section class="mt-16 md:mt-24">
             <h2 class="text-3xl font-bold text-center mb-10">¿Qué te ofrece LUZIA?</h2>
             
-            <!-- CONTENEDOR DE BENEFICIOS (Reordenado) -->
             <div class="grid md:grid-cols-2 gap-8">
                 
-                <!-- 1. Notificaciones (NUEVO) -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <!-- 1. Notificaciones -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
                     <h3 class="text-2xl font-semibold mb-3">🔔 Notificaciones Positivas</h3>
                     <p class="text-gray-600">
                         Recibe recordatorios positivos para ayudarte a reestructurar tus pensamientos negativos y cultivar una mentalidad más saludable.
@@ -65,48 +110,54 @@
                 </div>
                 
                 <!-- 2. Diario Emocional -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
                     <h3 class="text-2xl font-semibold mb-3">🧠 Diario Emocional Inteligente</h3>
                     <p class="text-gray-600">
                         Registra cómo te sientes (ánimo, emociones, actividades, pensamientos) y recibe feedback personalizado de LUZIA, nuestra IA empática, para comprender mejor tus patrones emocionales.
                     </p>
                 </div>
                 
-                <!-- 3. Directorio de Profesionales (MOVIDO) -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <!-- 3. Directorio de Profesionales -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
                     <h3 class="text-2xl font-semibold mb-3">🧑‍⚕️ Directorio de Profesionales</h3>
                     <p class="text-gray-600">
                         Conéctate con psicólogos reales. Explora perfiles, especialidades y encuentra el apoyo profesional que buscas.
                     </p>
                 </div>
 
-                <!-- 4. Asistente Virtual (ACTUALIZADO Y MOVIDO) -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <!-- 4. Asistente Virtual -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
                     <h3 class="text-2xl font-semibold mb-3">💬 Asistente Virtual 24/7</h3>
                     <p class="text-gray-600">
                         Conversa en cualquier momento con LUZIA, tu asistente virtual de apoyo emocional, para obtener contención, validación y compañía cuando más lo necesitas.
                     </p>
                 </div>
                 
-                <!-- 5. Meditaciones Guiadas (MOVIDO) -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <!-- 5. Meditaciones Guiadas -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
                     <h3 class="text-2xl font-semibold mb-3">🧘 Meditaciones Guiadas</h3>
                     <p class="text-gray-600">
                         Accede a audios y ejercicios de meditación para encontrar calma y reducir el estrés en tu día a día.
                     </p>
                 </div>
                 
-                <!-- 6. Planes Flexibles (MOVIDO Y AJUSTADO) -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <!-- 6. Planes Flexibles -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
                     <h3 class="text-2xl font-semibold mb-3">💖 Planes Flexibles</h3>
                     <p class="text-gray-600">
                         Comienza gratis con el plan Descubre y explora planes como Conecta o Prospera para desbloquear funciones avanzadas como estadísticas detalladas y más.
-                    </op>
+                    </p>
                 </div>
+            </div>
+            
+            <!-- Recordatorio intermedio -->
+            <div class="mt-10 text-center bg-purple-100 py-4 px-6 rounded-xl">
+                <p class="text-lg font-semibold text-purple-800">✨ ¡Sigue bajando! Tu regalo especial está cada vez más cerca... ✨</p>
             </div>
         </section>
 
-        <!-- Sección de Para Quién Es --><section class="mt-16 md:mt-24 text-center">
+        <!-- Sección de Para Quién Es -->
+        <section class="mt-16 md:mt-24 text-center">
             <h2 class="text-3xl font-bold mb-10">LUZIA es para ti si buscas:</h2>
             <ul class="space-y-4 max-w-lg mx-auto text-left text-lg">
                 <li class="flex items-start">
@@ -136,16 +187,41 @@
             </ul>
         </section>
 
-        <!-- Sección de Llamada a la Acción (CTA) --><section class="mt-16 md:mt-24 text-center">
-            <h2 class="text-3xl font-bold">¡Descubre LUZIA y empieza a cuidar de tu salud emocional hoy mismo! 🌻</h2>
+        <!-- Sección del REGALO ESPECIAL -->
+        <section class="mt-16 md:mt-24">
+            <div class="bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-600 p-8 rounded-3xl shadow-2xl text-white text-center gift-banner">
+                <div class="text-6xl mb-4">🎁</div>
+                <h2 class="text-4xl font-extrabold mb-4">¡TU REGALO ESPECIAL!</h2>
+                <p class="text-2xl font-semibold mb-6">Solo para ti que llegaste hasta aquí...</p>
+                <div class="bg-white text-gray-800 py-6 px-8 rounded-2xl inline-block max-w-lg mx-auto">
+                    <p class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-3">
+                        ¡1 MES GRATIS!
+                    </p>
+                    <p class="text-xl font-semibold mb-2">del Plan CONECTA</p>
+                    <p class="text-gray-600 text-lg">
+                        Acceso completo a todas las funciones premium de LUZIA por 30 días, totalmente GRATIS. 🌟
+                    </p>
+                    <p class="text-sm text-gray-500 mt-4">
+                        *Oferta válida para los primeros usuarios que se registren
+                    </p>
+                </div>
+                <p class="text-xl mt-6 font-semibold">
+                    ¡Regístrate ahora y reclama tu mes gratis! 👇
+                </p>
+            </div>
+        </section>
 
-            <!-- CONTENEDOR DE LANZAMIENTO --><div class="mt-10 max-w-lg mx-auto">
+        <!-- Sección de Llamada a la Acción (CTA) -->
+        <section class="mt-12 text-center">
+            <h2 class="text-3xl font-bold mb-6">¡Descubre LUZIA y empieza a cuidar de tu salud emocional hoy mismo! 🌻</h2>
+
+            <div class="mt-10 max-w-lg mx-auto">
                 
-                <!-- Formulario de Celular (Se ocultará post-lanzamiento) --><div id="signup-container" class="bg-white p-8 rounded-xl shadow-xl border border-gray-100">
-                    <h3 class="text-2xl font-semibold mb-4" id="form-title">¡Sé el primero en saberlo!</h3>
-                    <p class="text-gray-600 mb-6" id="form-description">Déjanos tu número de celular y te avisaremos el día del lanzamiento.</p>
+                <!-- Formulario de Celular -->
+                <div id="signup-container" class="bg-white p-8 rounded-xl shadow-xl border border-gray-100">
+                    <h3 class="text-2xl font-semibold mb-4" id="form-title">¡Sé el primero en saberlo y obtén tu mes GRATIS!</h3>
+                    <p class="text-gray-600 mb-6" id="form-description">Déjanos tu número de celular y te avisaremos el día del lanzamiento para que reclames tu regalo.</p>
                     
-                    <!-- Formulario que se enviará con JavaScript -->
                     <form id="luzia-signup-form" class="flex flex-col sm:flex-row gap-3">
                         <input 
                             type="tel" 
@@ -157,51 +233,53 @@
                         <button 
                             type="submit"
                             id="submit-button"
-                            class="w-full sm:w-auto bg-purple-600 text-white font-bold px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors duration-200"
+                            class="w-full sm:w-auto shine-effect text-white font-bold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity duration-200"
                         >
-                            ¡Avísame!
+                            ¡Quiero mi regalo!
                         </button>
                     </form>
-                    <p class="text-xs text-gray-500 mt-4" id="form-footer">Sin spam. Lo prometemos.</p>
+                    <p class="text-xs text-gray-500 mt-4" id="form-footer">Sin spam. Lo prometemos. 🔒</p>
                 </div>
 
-                <!-- Cuenta Regresiva (Se ocultará post-lanzamiento) --><div id="countdown-container" class="mt-8">
+                <!-- Cuenta Regresiva -->
+                <div id="countdown-container" class="mt-8">
                     <p class="text-xl text-gray-700 mb-4 font-semibold">Gran lanzamiento en:</p>
                     <div id="timer" class="flex justify-center space-x-4">
-                        <div class="bg-gray-200 p-4 rounded-lg w-20 text-center">
+                        <div class="bg-gradient-to-br from-purple-100 to-pink-100 p-4 rounded-lg w-20 text-center">
                             <span id="days" class="text-4xl font-bold text-purple-700">60</span>
                             <span class="block text-sm text-gray-600">Días</span>
                         </div>
-                        <div class="bg-gray-200 p-4 rounded-lg w-20 text-center">
+                        <div class="bg-gradient-to-br from-purple-100 to-pink-100 p-4 rounded-lg w-20 text-center">
                             <span id="hours" class="text-4xl font-bold text-purple-700">00</span>
                             <span class="block text-sm text-gray-600">Horas</span>
                         </div>
-                        <div class="bg-gray-200 p-4 rounded-lg w-20 text-center">
+                        <div class="bg-gradient-to-br from-purple-100 to-pink-100 p-4 rounded-lg w-20 text-center">
                             <span id="minutes" class="text-4xl font-bold text-purple-700">00</span>
                             <span class="block text-sm text-gray-600">Minutos</span>
                         </div>
-                        <div class="bg-gray-200 p-4 rounded-lg w-20 text-center">
+                        <div class="bg-gradient-to-br from-purple-100 to-pink-100 p-4 rounded-lg w-20 text-center">
                             <span id="seconds" class="text-4xl font-bold text-purple-700">00</span>
                             <span class="block text-sm text-gray-600">Segundos</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Botones de Descarga (Ocultos hasta el lanzamiento) --><div id="download-buttons" class="hidden mt-8 text-center">
+                <!-- Botones de Descarga -->
+                <div id="download-buttons" class="hidden mt-8 text-center">
                     <p class="text-3xl font-bold text-green-600 mb-6">¡LUZIA Ya Está Disponible!</p>
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <!-- Reemplaza '#' con el enlace real a la Play Store --><a 
+                        <a 
                             href="#" 
                             class="bg-black text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center space-x-2 transform hover:scale-105 transition-transform"
                         >
-                            <!-- Icono de Play Store (SVG) --><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M3 22V2l18 10L3 22zM6 6v12l9-6-9-6z"/></svg>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M3 22V2l18 10L3 22zM6 6v12l9-6-9-6z"/></svg>
                             <span>Google Play</span>
                         </a>
-                        <!-- Reemplaza '#' con el enlace real a la App Store --><a 
+                        <a 
                             href="#" 
                             class="bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center space-x-2 transform hover:scale-105 transition-transform"
                         >
-                            <!-- Icono de Apple (SVG) --><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10.713 0c-3.033 0-4.49 1.76-5.698 4.21C3.8 6.74 3.03 9.47 3.03 9.47c-.01.03 0 .06.01.09.16 1.13.7 2.22 1.4 3.14.73.95 1.55 1.95 2.65 1.93 1.08-.02 1.5-..6 2.89-.6 1.4 0 1.8.6 2.9.6 1.1.02 1.88-.95 2.58-1.92.77-1.05 1.25-2.28 1.25-3.41 0-.03.01-.06.02-.09-.06-2.58-1.4-4.88-3.5-6.31C12.82 1.2 11.9 0 10.713 0zM10 1.51c.73 0 1.45.47 2.02 1.12-.59.41-1.12.93-1.6 1.54-.7.92-1.28 2.04-1.28 3.32 0 1.34.42 2.5 1.1 3.44-.5.36-1.07.57-1.7.58-1.18.02-2.15-.9-2.9-1.87-.76-.99-1.2-2.15-1.21-3.32C6.42 4.1 8.08 1.5 10 1.51z"/></svg>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10.713 0c-3.033 0-4.49 1.76-5.698 4.21C3.8 6.74 3.03 9.47 3.03 9.47c-.01.03 0 .06.01.09.16 1.13.7 2.22 1.4 3.14.73.95 1.55 1.95 2.65 1.93 1.08-.02 1.5-.6 2.89-.6 1.4 0 1.8.6 2.9.6 1.1.02 1.88-.95 2.58-1.92.77-1.05 1.25-2.28 1.25-3.41 0-.03.01-.06.02-.09-.06-2.58-1.4-4.88-3.5-6.31C12.82 1.2 11.9 0 10.713 0zM10 1.51c.73 0 1.45.47 2.02 1.12-.59.41-1.12.93-1.6 1.54-.7.92-1.28 2.04-1.28 3.32 0 1.34.42 2.5 1.1 3.44-.5.36-1.07.57-1.7.58-1.18.02-2.15-.9-2.9-1.87-.76-.99-1.2-2.15-1.21-3.32C6.42 4.1 8.08 1.5 10 1.51z"/></svg>
                             <span>App Store</span>
                         </a>
                     </div>
@@ -210,20 +288,18 @@
             </div>
         </section>
 
-        <!-- Pie de página --><footer class="text-center text-gray-500 mt-16 md:mt-24 pt-8 border-t border-gray-200">
+        <!-- Pie de página -->
+        <footer class="text-center text-gray-500 mt-16 md:mt-24 pt-8 border-t border-gray-200">
             <p>&copy; 2025 LUZIA. Todos los derechos reservados.</p>
         </footer>
 
     </div>
 
-    <!-- Script para la cuenta regresiva Y el envío del formulario --><script>
-        // --- URL DE TU SCRIPT DE GOOGLE ---
-        // ¡¡¡IMPORTANTE!!! Asegúrate de que tu URL de Google Apps Script esté pegada aquí.
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyRFfDAdCbYMBpMwKhQeR-bGobIiFUgGp5U1PNbFqK99BQtjFi3--LiVFRif01Cwmc/exec'; // Esta URL no cambia
-        // ------------------------------------
+    <!-- Script para la cuenta regresiva Y el envío del formulario -->
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyRFfDAdCbYMBpMwKhQeR-bGobIiFUgGp5U1PNbFqK99BQtjFi3--LiVFRif01Cwmc/exec';
 
-
-        // --- Script de la Cuenta Regresiva ---
+        // Script de la Cuenta Regresiva
         const diasParaElLanzamiento = 60; 
         const countDownDate = new Date().getTime() + (diasParaElLanzamiento * 24 * 60 * 60 * 1000);
 
@@ -249,44 +325,39 @@
             }
         }, 1000);
 
-
-        // --- Script de Envío del Formulario a Google Sheets ---
+        // Script de Envío del Formulario a Google Sheets
         const form = document.getElementById('luzia-signup-form');
         const signupContainer = document.getElementById('signup-container');
         const submitButton = document.getElementById('submit-button');
 
         form.addEventListener('submit', e => {
-            e.preventDefault(); // Evita que la página se recargue
+            e.preventDefault();
 
-            // Muestra un estado de "enviando"
             submitButton.disabled = true;
             submitButton.innerHTML = 'Enviando...';
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
                     console.log('Success!', response);
-                    // Muestra el mensaje de agradecimiento
                     signupContainer.innerHTML = `
-                        <h3 class="text-2xl font-semibold mb-4 text-green-600">¡Gracias por registrarte!</h3>
-                        <p class="text-gray-700">Te avisaremos por celular en cuanto LUZIA esté disponible.</p>
+                        <h3 class="text-2xl font-semibold mb-4 text-green-600">¡Gracias por registrarte! 🎉</h3>
+                        <p class="text-gray-700 text-lg">Te avisaremos por celular en cuanto LUZIA esté disponible.</p>
+                        <p class="text-purple-600 font-bold text-xl mt-4">¡Tu mes gratis de Plan CONECTA te está esperando! 🎁</p>
                     `;
                 })
                 .catch(error => {
                     console.error('Error!', error.message);
-                    // En caso de error, vuelve a habilitar el formulario
                     submitButton.disabled = false;
-                    submitButton.innerHTML = '¡Avísame!';
+                    submitButton.innerHTML = '¡Quiero mi regalo!';
                     
-                    // Muestra un mensaje de error (opcional)
                     const errorMsg = document.createElement('p');
                     errorMsg.className = 'text-red-500 text-xs mt-2';
                     errorMsg.innerHTML = 'Hubo un error. Por favor, inténtalo de nuevo.';
                     form.appendChild(errorMsg);
-                    setTimeout(() => errorMsg.remove(), 3000); // Borra el mensaje después de 3 seg
+                    setTimeout(() => errorMsg.remove(), 3000);
                 });
         });
     </script>
 
 </body>
 </html>
-
